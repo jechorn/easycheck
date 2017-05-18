@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/movie/movie",
+    "pages/local/local",
+    "pages/movie-detail/detail",
+    "pages/movie-more/more",
+    "pages/local-detail/detail",
+    "pages/quick/quick"
+  ],
+
+  "window": {
+    "navigationBarBackgroundColor": "#a78a53",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "易查",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh" : true
+  },
+
+
+  "tabBar": {
+
+    "list": [
+      
+      {
+        "pagePath": "pages/movie/movie",
+        "text": "首页",
+        "iconPath":"images/icon/home_1.png",
+        "selectedIconPath": "images/icon/home_2.png"
+      },
+      {
+        "pagePath": "pages/quick/quick",
+        "text": "快看",
+        "iconPath": "images/icon/huo_1.png",
+        "selectedIconPath": "images/icon/huo_2.png"
+      },
+      {
+        "pagePath": "pages/local/local",
+        "text": "影院",
+        "iconPath": "images/icon/local_1.png",
+        "selectedIconPath": "images/icon/local_2.png"
+      }
+    ]
+  }
+
+
+}
+
+

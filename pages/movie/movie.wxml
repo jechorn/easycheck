@@ -1,0 +1,15 @@
+<import src="../templates/movie-list-container/movie-list-container.wxml" />
+<import src="../templates/reload/reload-template.wxml"/>
+
+<view class="main-container" wx:if="{{containerShow ===true}}">
+  <view class="inTheaters">
+    <template is="movieTemplateBlock" data="{{...inTheaters}}"></template>
+  </view>
+  <view class="comingSoon">
+    <template is="movieTemplateBlock" data="{{...comingSoon}}"></template>
+  </view>
+  <view class="top250">
+    <template is="movieTemplateBlock" data="{{...top250}}"></template>
+  </view>
+</view>
+<template is="reloadTemplate" wx:if="{{containerShow === false}}"></template>

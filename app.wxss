@@ -1,0 +1,38 @@
+page {
+  font-family: MicroSoft YaHei;
+  background-color: #eee;
+}
+
+text {
+  font-size: 24rpx;
+  color: #656e73;
+}
+
+.reload {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.reload .fail-img {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.reload .tips {
+  line-height: 90rpx;
+  color: #2bb8aa;
+  font-size: 26rpx;
+}
+.reload-btn{
+  font-size: 26rpx;
+  color: #2bb8aa;
+  border: 1px #2bb8aa solid;
+  padding-left:25px;
+  padding-right:25px;
+
+
+}

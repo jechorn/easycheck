@@ -1,0 +1,74 @@
+<!--pages/local/local.wxml-->
+<import src="../templates/reload/reload-template.wxml"/>
+<block wx:if="{{containerShow===true}}">
+<view class="fix-options">
+  <view class="current-location" catchtap="onLocationTap">
+    <view class="current-location-text-container">
+      <text class="current-location-text" wx:if="{{location.LocationName}}">{{currentArea}}</text>
+      <text class="current-location-text" wx:else>无法获得地址</text>
+    </view>
+
+    <image class="current-location-img" src="/images/icon/diretion.png"></image>
+  </view>
+  <view class="choose-location">
+    <view class="container-up" catchtap="chooseLocation">
+    </view>
+    <view class="clear-location" catchtap="clearLocation">
+      <image class="clear-location-img" src="/images/icon/clear.png"></image>
+    </view>
+    <input class="input" placeholder="请选择地址" value="{{chooseLocation.chooseLocation}}" placeholder-class="placeholder-style" />
+
+  </view>
+
+</view>
+
+<!--地区选择容器-->
+<scroll-view class="fixed-area" scroll-y="true" animation="{{animationData}}">
+  <view class="list-area {{location.LocationName == currentArea? 'active' : ''}}" catchtap="chooseArea" data-area="{{location.LocationName}}">
+    <text>全部</text>
+  </view>
+  <block wx:for="{{areasData}}" wx:for-item="area" wx:key="area">
+    <view class="list-area {{area == currentArea? 'active' : ''}}" catchtap="chooseArea" data-area="{{area}}">
+      <text>{{area}}</text>
+    </view>
+  </block>
+
+</scroll-view>
+
+<!--列表容器-->
+<view class="main-container">
+
+
+  <block wx:for="{{cinemas}}" wx:for-item="cinema" wx:key="cinema">
+    <view class="cinema-list" hover-class="cinema-list-hover" wx:if="{{currentArea==location.LocationName||cinema.area == currentArea}}" data-id="{{cinema.id}}" catchtap="onTapList">
+      <view class="cinema-detail">
+        <text class="cinema-name margin">{{cinema.nm}}</text>
+        <text class="cinema-price margin">
+          <text class="rmb-icon">¥</text>{{cinema.sellPrice}}<text class="text-icon">起</text>
+        </text>
+        <view class="cinema-icon margin">
+          <text class="cinema-icon-list" wx:if="{{cinema.sell==true}}">座</text>
+          <text class="cinema-icon-list" wx:if="{{cinema.imax==1}}">IMAX影厅</text>
+
+        </view>
+        <text class="cinema-position margin">{{cinema.addr}}</text>
+
+
+      </view>
+      <view class="cinema-distance">
+        <text>{{cinema.distance}}km</text>
+      </view>
+
+    </view>
+
+
+
+  </block>
+
+
+</view>
+</block>
+<block wx:if="{{containerShow===false}}">
+  <template is="reloadTemplate"></template>
+</block>
+

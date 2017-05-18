@@ -1,0 +1,7 @@
+<template name="reloadTemplate">
+    <view class="reload">
+        <image class="fail-img" src="/images/icon/fail.png"></image>
+        <text class="tips">网络失败，请重试</text>
+        <button class="reload-btn" catchtap="onPullDownRefresh">点击重试</button>
+    </view>
+</template>

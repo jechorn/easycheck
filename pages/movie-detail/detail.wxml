@@ -1,0 +1,93 @@
+<import src="../templates/stars/stars-template.wxml" />
+<import src="../templates/reload/reload-template.wxml"/>
+
+<view class="main-container" wx:if="{{containerShow===true}}">
+
+  <!-- header start-->
+  <view class="header-content">
+    <image class="header-img" src="{{movieDetail.image}}"></image>
+    <view class="header-text">
+      <text class="movie-title-1">{{movieDetail.title}}</text>
+      <text class="time-and-place">{{movieDetail.countries}} · {{movieDetail.year}}</text>
+      <view class="comment-and-like">
+        <text class="item-like-comment">
+          <text class="num">{{movieDetail.wish_count}}</text>人喜欢</text>
+        <text class="item-like-comment">
+          <text class="num">{{movieDetail.reviews_count}}</text>条评论</text>
+
+      </view>
+
+
+    </view>
+    <image class="movie-img" src="{{movieDetail.image}}"></image>
+
+  </view>
+
+
+  <!-- detail start-->
+  <view class="movie-detail">
+    <text class="movie-title-2">{{movieDetail.title}}</text>
+    <view class="movie-list">
+      <text class="movie-list-title">评分</text>
+      <template is="starsTemplate" data="{{stars:movieDetail.stars, score:movieDetail.average}}"></template>
+    </view>
+
+    <view class="movie-list">
+      <text class="movie-list-title">导演</text>
+      <text class="movie-list-content">{{movieDetail.directors}}</text>
+    </view>
+
+
+    <view class="movie-list">
+      <text class="movie-list-title">影人</text>
+      <text class="movie-list-content">{{movieDetail.totalCasts}}</text>
+    </view>
+    <view class="movie-list">
+      <text class="movie-list-title">类型</text>
+      <text class="movie-list-content">{{movieDetail.genres}}</text>
+    </view>
+
+  </view>
+
+
+  <!-- description start-->
+  <view class="movie-summary">
+    <text class="movie-summary-title">剧情简介</text>
+    <text class="movie-summary-content">{{movieDetail.summary}}</text>
+  </view>
+
+
+  <!-- stars start-->
+  <view class="movie-stars">
+    <text class="movie-stars-title">影人</text>
+    <scroll-view scroll-x="true" style="width:100%;white-space:nowrap;height:300rpx;">
+
+
+      <block wx:for="{{movieDetail.casts}}" wx:for-item="list" wx:key="list">
+
+        <view class="stars-list-container scroll-view-item">
+          <view class="stars-list">
+            <image mode="aspectFit" class="movie-stars-img" src="{{list.avatars.large}}"></image>
+            
+            
+            <scroll-view scroll-x="true" style="width:100%;white-space:nowrap;">
+              <view class="movie-stars-text-container">
+                <text class="movie-stars-text">{{list.name}}</text>
+              </view>
+            </scroll-view>
+
+            
+
+          </view>
+        </view>
+
+
+      </block>
+
+    </scroll-view>
+  </view>
+
+
+
+</view>
+<template is="reloadTemplate" wx:if="{{containerShow === false}}"></template>

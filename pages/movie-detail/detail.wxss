@@ -1,0 +1,153 @@
+@import "../templates/stars/stars-template.wxss";
+page{
+  width: 100%;
+  height: 100%;
+}
+.main-container{
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+
+
+}
+.header-content{
+  position: relative;
+  border-bottom: 1px solid #eeeeee;
+}
+.header-img{
+  height: 320rpx;
+  width: 100%;
+  filter: blur(10px);
+ 
+
+}
+.header-text{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 320rpx;
+  padding: 0 40rpx;
+}
+
+.movie-title-1{
+  color: #FFFFFF;
+  font-size: 35rpx;
+  font-weight: 500;
+  margin-top: 50rpx;
+  letter-spacing: 2px;
+  
+}
+.time-and-place{
+  color: #ffffff;
+  font-size: 24rpx;
+  margin-top: 50rpx;
+  
+}
+.comment-and-like{
+  display: flex;
+  flex-direction: row;
+  margin-top: 40rpx;
+}
+.item-like-comment{
+  font-size: 20rpx;
+  color: #6a6a6a;
+  
+}
+.item-like-comment:first-child{
+  margin-right: 20rpx;
+}
+.num{
+  color: red;
+  margin-right: 10rpx;
+}
+.movie-img{
+  width: 200rpx;
+  height:270rpx;
+  position: absolute;
+  top:150rpx;
+  right:40rpx;
+}
+
+.movie-detail{
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px #f2f2f2 solid;
+  padding: 30rpx 20rpx;
+  background-color: #ffffff;
+
+}
+.movie-title-2{
+  color: #1d1d1d;
+  font-size: 28rpx;
+  font-weight: 500;
+  margin-left: 20rpx;
+  margin-bottom: 30rpx;
+  letter-spacing: 1px;
+}
+.movie-list{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+}
+.movie-list-title{
+  width: 50rpx;
+}
+.movie-list-title,.movie-summary-title{
+  font-size: 24rpx;
+  color: #999999;
+  margin-right: 20rpx;
+}
+.movie-list-content,.movie-summary-content,.movie-stars-title{
+  font-size: 24rpx;
+  color: #6f6d6d;
+  line-height: 35rpx;
+}
+.movie-summary,.movie-stars{
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx;
+  background-color:#ffffff;
+  border-bottom: 1px #f2f2f2 solid;
+  
+}
+.movie-summary-title , .movie-stars-title{
+  line-height: 40rpx;
+  margin-bottom: 20rpx;
+  letter-spacing: 2px;
+}
+.movie-summary-content{
+  line-height: 48rpx;
+  text-indent: 48rpx;
+  letter-spacing: 1px;
+}
+.stars-list-container{
+  display: inline-block;
+}
+.stars-list{
+  display: flex;
+  flex-direction: column;
+  margin-right: 10rpx;
+  width: 180rpx;
+ 
+}
+.movie-stars-img{
+  height: 220rpx;
+  width: 180rpx;
+}
+.movie-stars-text{
+  text-align: center;
+  line-height: 40rpx;
+  color: #6f6d6d;
+  font-size: 24rpx;
+  
+  
+}
+.movie-stars-text-container{
+  text-align: center;
+  width: 180rpx;
+  
+}

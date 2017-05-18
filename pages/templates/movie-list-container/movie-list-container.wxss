@@ -1,0 +1,34 @@
+@import "../movie-list/movie-list.wxss";
+.container{
+  background-color: #FFFFFF;
+  margin-bottom: 30rpx;
+  padding-bottom: 30rpx;
+
+}
+.hot-movie text{
+  font-size: 24rpx;
+  
+}
+.hot-movie{
+  padding: 20rpx 20rpx 25rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+.more-img{
+  margin-left: 5rpx;
+  width: 20rpx;
+  height: 20rpx;
+  vertical-align: middle;
+  position: relative;
+  top:3rpx;
+}
+.scroll-view_H{
+  white-space:nowrap;
+
+}
+.scroll-view-item{
+  display: inline-block;
+}

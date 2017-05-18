@@ -1,0 +1,26 @@
+@import "../templates/movie-list-container/movie-list-container.wxss";
+page{
+  width: 100%;
+  height: 100%;
+}
+.before-container{
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.loading-img{
+  margin: 0 auto;
+  display: flex;
+  width: 50rpx;
+  height: 50rpx;
+  margin-bottom: 15rpx;
+
+
+}
+.loading-text{
+  font-size: 24rpx;
+}

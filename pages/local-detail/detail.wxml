@@ -1,0 +1,140 @@
+<!-- pages/local-detail/detail.wxml -->
+<import src="../templates/reload/reload-template.wxml"/>
+<view wx:if="{{containerShow===true}}" style="overflow-x:hidden;">
+    <!-- cinema info -->
+    <view class="cinema-info">
+        <text class="cinema-name">{{cinemaData.cinemaDetailModel.nm}}</text>
+        <view class="cinema-note" wx:if="{{cinemaData.cinemaDetailModel.note !==''}}">
+            <text class="cinema-discount">NOTE</text>
+            <text>{{cinemaData.cinemaDetailModel.note}}</text>
+        </view>
+    </view>
+    <view class="cinema-location background-border-bottom">
+        <image class="icon-location" src="/images/icon/location.png" catchtap="onTapCheckMap"></image>
+        <view class="location-text-container" catchtap="onTapCheckMap">
+            <text class="location-text">{{cinemaData.cinemaDetailModel.addr}}</text>
+        </view>
+        <view class="cinema-phone" catchtap="onTapCall">
+            <image class="icon-phone" src="/images/icon/phone.png"></image>
+        </view>
+    </view>
+    <!-- end cinema info -->
+    <block wx:if="{{isSaleOnLIne}}">
+        <!-- start cinema movie show -->
+        <view class="movie-show background-border-bottom">
+            <text class="base-title">电影资讯</text>
+            <view class="movie-image-container">
+                <image class="background" src="/images/icon/mao_{{backgroundImageIndex}}.png"></image>
+                <view style="height:350rpx;width:100%;">
+                    <swiper class="movie-swiper" bindchange="onMovieChange" current="{{currentMovie}}">
+                        <block wx:for="{{cinemaData.movies}}" wx:for-item="movie" wx:key="id">
+                            <swiper-item class="movie-item {{index == currentMovie? 'active': ''}}"
+                                         data-id="{{movie.id}}" catchtap="onMovieTap">
+                                <image src="{{movie.img}}" class="slide-image" circular="true" mode="aspectFit"></image>
+                            </swiper-item>
+                        </block>
+                    </swiper>
+                </view>
+                <image class="icon-up" src="/images/icon/white-up.png"></image>
+            </view>
+            <view class="show-movie-detail">
+                <view class="movie-detail-list">
+                    <text class="movie-name">{{cinemaData.currentMovie.nm}}</text>
+                    <text class="movie-score">{{cinemaData.currentMovie.sc==''?'暂无评分':cinemaData.currentMovie.sc}}</text>
+                </view>
+                <view class="movie-detail-list">
+                    <text class="time">{{cinemaData.currentMovie.ver}}</text>
+                    <text>|</text>
+                    <text class="type">{{cinemaData.currentMovie.isShowing==true ? '热映':'即将上映'}}</text>
+                    <!--
+                <text>
+                    |</text>
+                    <text class="actor">李刚导演</text>
+                    -->
+                </view>
+            </view>
+            <view class="movie-onshow">
+                <scroll-view class="show-date" scroll-x="true">
+                    <block wx:for="{{cinemaData.Dates}}" wx:key="date" wx:for-item="date">
+                        <text class="date {{date.slug == chooseDate ? 'active':''}}" catchtap="onDateChoose" data-date="{{date.slug}}">{{date.text}}</text>
+                    </block>
+                </scroll-view>
+                <block wx:for="{{cinemaData.DateShow}}" wx:for-item="dateList" wx:for-index="dateIndex" wx:key="dateList">
+                    <block wx:if="{{dateIndex == chooseDate && dateList.length > 0}}">
+                        <block wx:for="{{dateList}}" wx:for-item="movieShow" wx:for-index="ShowIndex" wx:key="movieShow">
+                            <view class="show-detail">
+                                <view class="left">
+                                    <view class="column-1">
+                                        <text class="time">{{movieShow.tm}}</text>
+                                        <text class="language">{{movieShow.lang}}{{movieShow.tp}}</text>
+                                        <text class="price">{{movieShow.tm}}</text>
+                                    </view>
+                                    <view class="column-2">
+                                        <text class="time">{{movieShow.end}}散场</text>
+                                        <text class="place">{{movieShow.th}}</text>
+                                        <text class="price">影院价：40</text>
+                                    </view>
+                                </view>
+                                <view class="right">
+                                    <text wx:if="{{movieShow.sell==true && cinemaData.currentMovie.isShowing==true}}">可预订</text>
+                                    <text wx:elif="{{movieShow.sell==true && cinemaData.currentMovie.isShowing==false}}">预售</text>
+                                </view>
+                            </view>
+                        </block>
+                    </block>
+                    <block wx:elif="{{dateIndex == chooseDate && dateList.length == 0}}">
+                        <view class="empty">
+                            <image class="empty-img" src="/images/icon/show.png"></image>
+                            <text class="empty-text">{{cinemaData.currentMovie.isShowing==true?'暂无影片上映':'影片暂未上映'}}</text>
+                        </view>
+                    </block>
+                </block>
+            </view>
+        </view>
+        <!-- end cinema movie show -->
+        <!-- start special service -->
+        <view class="cinema-item background-border-bottom">
+            <text class="base-title padding">特色服务</text>
+            <block wx:for="{{cinemaData.cinemaDetailModel.featureTags}}" wx:for-item="featureTags" wx:key="id">
+                <view class="cinema-service-list padding">
+                    <text class="list-title">{{featureTags.tag}}</text>
+                    <text class="list-content">{{featureTags.desc}}</text>
+                </view>
+            </block>
+        </view>
+        <!-- end special service -->
+        <view class="cinema-item background-border-bottom"
+              wx:if="{{cinemaData.cinemaDetailModel.bus !==''||cinemaData.cinemaDetailModel.suw !==''||cinemaData.cinemaDetailModel.park !==''}}">
+            <text class="base-title padding">交通信息</text>
+            <view class="cinema-service-list padding" wx:if="{{cinemaData.cinemaDetailModel.bus !==''}}">
+                <text class="list-title">公交</text>
+                <text class="list-content">{{cinemaData.cinemaDetailModel.bus}}</text>
+            </view>
+            <view class="cinema-service-list padding" wx:if="{{cinemaData.cinemaDetailModel.suw !==''}}">
+                <text class="list-title">地铁</text>
+                <text class="list-content">{{cinemaData.cinemaDetailModel.suw}}</text>
+            </view>
+            <view class="cinema-service-list padding" wx:if="{{cinemaData.cinemaDetailModel.park !==''}}">
+                <text class="list-title">停车</text>
+                <text class="list-content">{{cinemaData.cinemaDetailModel.park}}</text>
+            </view>
+        </view>
+    </block>
+    <block wx:else>
+        <view class="isSaleOnLIne">
+            <text class="isSaleOnLIne-msg">该影院暂无排期</text>
+        </view>
+    </block>
+    <view class="copyright">
+        <image src="/images/icon/logo-full.png"></image>
+        <text class="copyright-text">所有信息所有权归猫眼电影所有</text>
+    </view>
+</view>
+<template is="reloadTemplate" wx:if="{{containerShow === false}}"></template>
+
+
+
+
+
+
+

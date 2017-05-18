@@ -1,0 +1,40 @@
+<!-- pages/quick/quick.wxml -->
+<import src="../templates/is-loading/is-loading.wxml"/>
+
+<import src="../templates/reload/reload-template.wxml"  />
+<view class="video-container" wx:if="{{containerShow===true}}">
+  <block wx:for="{{videos}}" wx:for-index="index" wx:for-item="video" wx:key="video">
+    <view class="video-list">
+      <video class="video-content" src="{{video.videouri}}" autoplay="true"
+             wx:if="{{currentVideo.isPlay && index==currentVideo.videoIndex}}"></video>
+      <image class="video-content" src="{{video.bimageuri}}" wx:if="{{currentVideo==null||currentVideo.videoIndex !==index}}"
+             mode="aspectFill" catchtap="playVideo" data-videoId="{{video.id}}" data-index="{{index}}"></image>
+      <text class="video-title" wx:if="{{currentVideo==null||currentVideo.videoIndex !==index}}">{{video.text}}</text>
+      <view class="icon-play">
+        <image class="play-img" src="/images/icon/play.png" catchtap="playVideo" data-videoId="{{video.id}}"
+               data-index="{{index}}" wx:if="{{currentVideo==null||currentVideo.videoIndex !==index}}"></image>
+      </view>
+      <view class="video-like">
+        <view class="author-container">
+          <view class="author">
+            <image class="author-img" src="{{video.profile_image}}"></image>
+            <text class="name">{{video.screen_name}}</text>
+          </view>
+        </view>
+        <view class="thumb-list">
+          <view class="like-list">
+            <image class="num-img" src="/images/icon/up.png"></image>
+            <text class="num">{{video.love}}</text>
+          </view>
+          <view class="like-list">
+            <image class="num-img" src="/images/icon/down.png"></image>
+            <text class="num">{{video.hate}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <template is="loadingTemplate"></template>
+
+</view>
+<template is="reloadTemplate" wx:if="{{containerShow === false}}"></template>
